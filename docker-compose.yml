@@ -1,3 +1,6 @@
+version: "3.8"
+
+services:
   crowdfunding_frontend:
     build:
       context: ./frontend
@@ -6,3 +9,7 @@
     restart: unless-stopped
     networks:
       - web
+
+networks:
+  web:
+    external: true
