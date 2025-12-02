@@ -1,46 +1,18 @@
 window.addEventListener("DOMContentLoaded", async () => {
     const contractAddress = "0x54941a62078dfA6d10DF578C67B283f2D3c246a7";
     const abi = [
-        {
-          "inputs": [
-            {"internalType": "string", "name": "_projectName", "type": "string"},
-            {"internalType": "string", "name": "_description", "type": "string"},
-            {"internalType": "uint256", "name": "_goal", "type": "uint256"}
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [],
-          "name": "totalFunds",
-          "outputs": [{"internalType": "uint256","name":"","type":"uint256"}],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "fund",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
-          "inputs": [{"internalType": "address","name":"user","type":"address"}],
-          "name": "getContribution",
-          "outputs": [{"internalType": "uint256","name":"","type":"uint256"}],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {"indexed": true,"internalType": "address","name": "funder","type": "address"},
-            {"indexed": false,"internalType": "uint256","name": "amount","type": "uint256"}
-          ],
-          "name": "Funded",
-          "type": "event"
-        }
-      ];
+        {"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_description","type":"string"},{"internalType":"uint256","name":"_goal","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},
+        {"inputs":[],"name":"projectName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"description","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"goal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"totalFunds","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"fund","outputs":[],"stateMutability":"payable","type":"function"},
+        {"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},
+        {"inputs":[],"name":"refund","outputs":[],"stateMutability":"nonpayable","type":"function"},
+        {"inputs":[],"name":"donorCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+        {"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"donors","outputs":[{"internalType":"address","name":"donor","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"view","type":"function"}
+    ];
     const connectBtn = document.getElementById("connectBtn");
     const fundBtn = document.getElementById("fundBtn");
     const withdrawBtn = document.getElementById("withdrawBtn");
