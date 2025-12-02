@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", async () => {
-    const contractAddress = "0x54941a62078dfA6d10DF578C67B283f2D3c246a7";
+    const contractAddress = "0x0755D2CebcFf1aE73Ad9853D36f3E535Ef295F20";
     const abi = [
         {"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_description","type":"string"},{"internalType":"uint256","name":"_goal","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},
         {"inputs":[],"name":"projectName","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},

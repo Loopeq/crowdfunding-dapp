@@ -7,7 +7,7 @@ contract DeployCrowdfunding is Script {
     function run() external {
         vm.startBroadcast();
         new Crowdfunding(
-            "###",
+            "Crowdfunding dapp",
             unicode"Описание проекта",
             1 ether
         );
