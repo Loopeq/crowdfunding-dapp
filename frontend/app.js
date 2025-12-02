@@ -1,12 +1,52 @@
 window.addEventListener("DOMContentLoaded", async () => {
-    const contractAddress = "АДРЕС_ДЕПЛОЯ";
-    const abi = [ /* ABI нового контракта */ ];
+    const contractAddress = "0x8b60B8D24f7a5ce104A3Bb702143407Ac33f8e80";
+    const abi = [
+        {
+          "inputs": [
+            {"internalType": "string", "name": "_projectName", "type": "string"},
+            {"internalType": "string", "name": "_description", "type": "string"},
+            {"internalType": "uint256", "name": "_goal", "type": "uint256"}
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "name": "totalFunds",
+          "outputs": [{"internalType": "uint256","name":"","type":"uint256"}],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "fund",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [{"internalType": "address","name":"user","type":"address"}],
+          "name": "getContribution",
+          "outputs": [{"internalType": "uint256","name":"","type":"uint256"}],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {"indexed": true,"internalType": "address","name": "funder","type": "address"},
+            {"indexed": false,"internalType": "uint256","name": "amount","type": "uint256"}
+          ],
+          "name": "Funded",
+          "type": "event"
+        }
+      ];
     const connectBtn = document.getElementById("connectBtn");
     const fundBtn = document.getElementById("fundBtn");
     const withdrawBtn = document.getElementById("withdrawBtn");
     const refundBtn = document.getElementById("refundBtn");
     const projectNameEl = document.getElementById("projectName");
-    const descripAonEl = document.getElementById("descripAon");
+    const descriptionEl = document.getElementById("description");
     const goalEl = document.getElementById("goal");
     const totalFundsEl = document.getElementById("totalFunds");
     const ownerEl = document.getElementById("owner");
@@ -35,12 +75,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     async function loadContractData() {
         if (!contract) return;
         const name = await contract.projectName();
-        const desc = await contract.descripAon();
+        const desc = await contract.description();
         const goal = await contract.goal();
         const total = await contract.totalFunds();
         const owner = await contract.owner();
         projectNameEl.textContent = name;
-        descripAonEl.textContent = desc;
+        descriptionEl.textContent = desc;
         goalEl.textContent = ethers.formatEther(goal);
         totalFundsEl.textContent = ethers.formatEther(total);
         ownerEl.textContent = owner;
