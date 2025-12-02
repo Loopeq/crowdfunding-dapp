@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", async () => {
-    const contractAddress = "0x8b60B8D24f7a5ce104A3Bb702143407Ac33f8e80";
+    const contractAddress = "0x54941a62078dfA6d10DF578C67B283f2D3c246a7";
     const abi = [
         {
           "inputs": [
@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const ownerEl = document.getElementById("owner");
     const amountInput = document.getElementById("amount");
     const progressFill = document.getElementById("progress");
-    const donaAonsList = document.getElementById("donaAonsList");
+    const donationList = document.getElementById("donationList");
     let provider, signer, contract;
     connectBtn.onclick = async () => {
         if (!window.ethereum) {
@@ -87,14 +87,14 @@ window.addEventListener("DOMContentLoaded", async () => {
         const progressPercent = Math.min(100, Number(ethers.formatEther(total)) /
             Number(ethers.formatEther(goal)) * 100);
         progressFill.style.width = progressPercent + "%";
-        donaAonsList.innerHTML = "";
+        donationList.innerHTML = "";
         const donorCount = await contract.donorCount();
         for (let i = 0; i < donorCount; i++) {
             const d = await contract.donors(i);
             if (Number(d.amount) > 0) {
                 const li = document.createElement("li");
                 li.textContent = `${d.donor}: ${ethers.formatEther(d.amount)} ETH`;
-                donaAonsList.appendChild(li);
+                donationList.appendChild(li);
             }
         }
     }

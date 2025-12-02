@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 contract Crowdfunding {
     string public projectName;
-    string public descripAon;
+    string public description;
     uint public goal;
     uint public totalFunds;
     address public owner;
@@ -12,11 +12,11 @@ contract Crowdfunding {
         uint amount;
     }
 
-    Donation[] public donaAons;
+    Donation[] public donations;
 
-    constructor(string memory _name, string memory _descripAon, uint _goal) {
+    constructor(string memory _name, string memory _description, uint _goal) {
         projectName = _name;
-        descripAon = _descripAon;
+        description = _description;
         goal = _goal;
         owner = msg.sender;
         totalFunds = 0;
@@ -25,7 +25,7 @@ contract Crowdfunding {
     function fund() public payable {
         require(msg.value > 0, "Donate more than 0");
         totalFunds += msg.value;
-        donaAons.push(Donation(msg.sender, msg.value));
+        donations.push(Donation(msg.sender, msg.value));
     }
 
     function withdraw() public {
@@ -39,10 +39,10 @@ contract Crowdfunding {
     function refund() public {
         require(totalFunds < goal, "Goal reached, cannot refund");
         uint refundAmount = 0;
-        for (uint i = 0; i < donaAons.length; i++) {
-            if (donaAons[i].donor == msg.sender && donaAons[i].amount > 0) {
-                refundAmount += donaAons[i].amount;
-                donaAons[i].amount = 0;
+        for (uint i = 0; i < donations.length; i++) {
+            if (donations[i].donor == msg.sender && donations[i].amount > 0) {
+                refundAmount += donations[i].amount;
+                donations[i].amount = 0;
             }
         }
         require(refundAmount > 0, "No funds to refund");
@@ -51,11 +51,11 @@ contract Crowdfunding {
     }
 
     function donorCount() public view returns (uint) {
-        return donaAons.length;
+        return donations.length;
     }
     
     function donors(uint index) public view returns (address donor, uint amount) {
-        Donation storage d = donaAons[index];
+        Donation storage d = donations[index];
         return (d.donor, d.amount);
     }
 }
