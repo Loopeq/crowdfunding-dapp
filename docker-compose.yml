@@ -1,0 +1,8 @@
+  crowdfunding_frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: crowdfunding_frontend
+    restart: unless-stopped
+    networks:
+      - web
